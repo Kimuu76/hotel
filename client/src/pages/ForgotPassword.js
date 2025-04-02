@@ -14,6 +14,7 @@ import {
 	Box,
 	Divider,
 } from "@mui/material";
+import API_BASE_URL from "../config";
 
 const ForgotPassword = () => {
 	const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ const ForgotPassword = () => {
 
 		try {
 			const response = await axios.post(
-				"http://localhost:5000/api/users/forgot-password",
+				`${API_BASE_URL}/api/users/forgot-password`,
 				{ email }
 			);
 

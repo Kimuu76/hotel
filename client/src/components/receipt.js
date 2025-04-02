@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config";
 
 const Receipt = ({ saleId, items, totalPrice }) => {
 	const receiptRef = useRef();
@@ -15,7 +16,7 @@ const Receipt = ({ saleId, items, totalPrice }) => {
 				if (!token) throw new Error("No token found");
 
 				const response = await axios.get(
-					"http://localhost:5000/api/dashboard/business-name",
+					`${API_BASE_URL}/api/dashboard/business-name`,
 					{ headers: { Authorization: `Bearer ${token}` } }
 				);
 				setBusinessName(response.data.businessName);

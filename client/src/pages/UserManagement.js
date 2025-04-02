@@ -21,6 +21,7 @@ import {
 	TextField,
 } from "@mui/material";
 import { Edit, Delete, PersonAdd } from "@mui/icons-material";
+import API_BASE_URL from "../config";
 
 const UserManagement = () => {
 	const [users, setUsers] = useState([]);
@@ -45,12 +46,9 @@ const UserManagement = () => {
 		}
 
 		try {
-			const response = await axios.get(
-				"http://localhost:5000/api/users/business",
-				{
-					headers: { Authorization: `Bearer ${token}` },
-				}
-			);
+			const response = await axios.get(`${API_BASE_URL}/api/users/business`, {
+				headers: { Authorization: `Bearer ${token}` },
+			});
 
 			if (Array.isArray(response.data)) {
 				setUsers(response.data);
@@ -85,7 +83,7 @@ const UserManagement = () => {
 
 		try {
 			await axios.put(
-				`http://localhost:5000/api/users/${editUser.id}`,
+				`${API_BASE_URL}/api/users/${editUser.id}`,
 				{
 					name: newName,
 					email: newEmail,
@@ -110,7 +108,7 @@ const UserManagement = () => {
 		}
 
 		try {
-			await axios.delete(`http://localhost:5000/api/users/${id}`, {
+			await axios.delete(`${API_BASE_URL}/api/users/${id}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			});
 			fetchUsers();
@@ -134,7 +132,7 @@ const UserManagement = () => {
 
 		try {
 			await axios.post(
-				"http://localhost:5000/api/users/create",
+				`${API_BASE_URL}/api/users/create`,
 				{
 					name: newName,
 					email: newEmail,

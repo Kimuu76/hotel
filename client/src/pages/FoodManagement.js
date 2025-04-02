@@ -20,6 +20,7 @@ import {
 	DialogTitle,
 } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
+import API_BASE_URL from "../config";
 
 const FoodManagement = () => {
 	const [foods, setFoods] = useState([]);
@@ -35,7 +36,7 @@ const FoodManagement = () => {
 	const fetchFoods = async () => {
 		try {
 			const response = await axios.get(
-				`http://localhost:5000/api/food?business_id=${businessId}`
+				`${API_BASE_URL}/api/food?business_id=${businessId}`
 			);
 			setFoods(response.data);
 		} catch (error) {
@@ -71,10 +72,10 @@ const FoodManagement = () => {
 
 		try {
 			if (editingId) {
-				await axios.put(`http://localhost:5000/api/food/${editingId}`, payload);
+				await axios.put(`${API_BASE_URL}/api/food/${editingId}`, payload);
 				alert("Food item updated successfully!");
 			} else {
-				await axios.post("http://localhost:5000/api/food/add", payload);
+				await axios.post(`${API_BASE_URL}/api/food/add`, payload);
 				alert("Food item added successfully!");
 			}
 			setOpen(false);
@@ -87,7 +88,7 @@ const FoodManagement = () => {
 	const handleDelete = async (id) => {
 		if (window.confirm("Are you sure you want to delete this food item?")) {
 			try {
-				await axios.delete(`http://localhost:5000/api/food/${id}`);
+				await axios.delete(`${API_BASE_URL}/api/food/${id}`);
 				alert("Food item deleted successfully!");
 				setFoods(foods.filter((food) => food.id !== id));
 			} catch (error) {

@@ -70,6 +70,10 @@ app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
 });
 
+app.get("/", (req, res) => {
+	res.send("✅ Backend is running successfully!");
+});
+
 // Graceful Shutdown
 process.on("SIGINT", async () => {
 	console.log("🔴 Shutting down server...");

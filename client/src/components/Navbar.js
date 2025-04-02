@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Menu as MenuIcon, Logout } from "@mui/icons-material";
 import axios from "axios";
 import { useMediaQuery } from "@mui/material";
+import API_BASE_URL from "../config";
 
 const Navbar = ({ toggleSidebar }) => {
 	const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Navbar = ({ toggleSidebar }) => {
 				if (!token) throw new Error("No token found");
 
 				const response = await axios.get(
-					"http://localhost:5000/api/dashboard/business-name",
+					`${API_BASE_URL}/api/dashboard/business-name`,
 					{ headers: { Authorization: `Bearer ${token}` } }
 				);
 				setBusinessName(response.data.businessName);

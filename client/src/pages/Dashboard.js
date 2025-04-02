@@ -20,6 +20,7 @@ import {
 	Legend,
 	ResponsiveContainer,
 } from "recharts";
+import API_BASE_URL from "../config";
 
 const Dashboard = () => {
 	const navigate = useNavigate();
@@ -69,7 +70,7 @@ const Dashboard = () => {
 				if (!token) throw new Error("No token found");
 
 				const response = await axios.get(
-					`http://localhost:5000/api/dashboard/stats?business_id=${businessId}`,
+					`${API_BASE_URL}/api/dashboard/stats?business_id=${businessId}`,
 					{ headers: { Authorization: `Bearer ${token}` } }
 				);
 

@@ -22,6 +22,7 @@ import {
 	Alert,
 } from "@mui/material";
 import { Delete, Edit, Save } from "@mui/icons-material";
+import API_BASE_URL from "../config";
 
 // Function to extract business_id from token
 const getBusinessIdFromToken = () => {
@@ -67,12 +68,9 @@ const Purchases = () => {
 
 		const fetchPurchases = async () => {
 			try {
-				const response = await axios.get(
-					"http://localhost:5000/api/purchases",
-					{
-						params: { business_id: businessId },
-					}
-				);
+				const response = await axios.get(`${API_BASE_URL}/api/purchases`, {
+					params: { business_id: businessId },
+				});
 				setPurchases(response.data);
 			} catch (error) {
 				console.error("Error fetching purchases:", error);
@@ -97,13 +95,10 @@ const Purchases = () => {
 		if (!confirmPurchase) return;
 
 		try {
-			const response = await axios.post(
-				"http://localhost:5000/api/purchases/add",
-				{
-					...newPurchase,
-					business_id,
-				}
-			);
+			const response = await axios.post(`${API_BASE_URL}/api/purchases/add`, {
+				...newPurchase,
+				business_id,
+			});
 
 			setPurchases([...purchases, response.data]);
 			setNewPurchase({ item: "", quantity: "", price: "" });
@@ -131,7 +126,7 @@ const Purchases = () => {
 				return;
 			}
 
-			await axios.delete(`http://localhost:5000/api/purchases/${deleteId}`, {
+			await axios.delete(`${API_BASE_URL}/api/purchases/${deleteId}`, {
 				params: { business_id },
 			});
 
@@ -173,7 +168,7 @@ const Purchases = () => {
 		if (!confirm) return;
 
 		try {
-			await axios.put(`http://localhost:5000/api/purchases/${editId}`, {
+			await axios.put(`${API_BASE_URL}/api/purchases/${editId}`, {
 				...editData,
 				business_id,
 			});

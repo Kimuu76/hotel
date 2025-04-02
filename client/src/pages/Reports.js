@@ -21,6 +21,7 @@ import {
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
+import API_BASE_URL from "../config";
 
 // Function to extract business_id from token
 const getBusinessIdFromToken = () => {
@@ -58,7 +59,7 @@ const Reports = () => {
 		setError("");
 		try {
 			const response = await axios.get(
-				`http://localhost:5000/api/reports/${reportType}`,
+				`${API_BASE_URL}/api/reports/${reportType}`,
 				{
 					params: { filter, business_id: businessId }, // ✅ Added business_id
 				}

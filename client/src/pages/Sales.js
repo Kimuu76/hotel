@@ -19,6 +19,7 @@ import {
 	InputLabel,
 } from "@mui/material";
 import Receipt from "../components/receipt";
+import API_BASE_URL from "../config";
 
 // Function to extract business_id from token
 const getBusinessIdFromToken = () => {
@@ -53,10 +54,10 @@ const Sales = () => {
 		const fetchData = async () => {
 			try {
 				const [salesRes, foodsRes] = await Promise.all([
-					axios.get("http://localhost:5000/api/sales", {
+					axios.get(`${API_BASE_URL}/api/sales`, {
 						params: { business_id: businessId },
 					}),
-					axios.get("http://localhost:5000/api/sales/foods", {
+					axios.get(`${API_BASE_URL}/api/sales/foods`, {
 						params: { business_id: businessId },
 					}),
 				]);
@@ -117,7 +118,7 @@ const Sales = () => {
 		if (cart.length === 0) return;
 
 		try {
-			const response = await axios.post("http://localhost:5000/api/sales/add", {
+			const response = await axios.post(`${API_BASE_URL}/api/sales/add`, {
 				items: cart.map(({ food_name, price, quantity }) => ({
 					food_name,
 					price,

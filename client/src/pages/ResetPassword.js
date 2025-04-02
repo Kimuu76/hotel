@@ -14,6 +14,7 @@ import {
 	Box,
 	Divider,
 } from "@mui/material";
+import API_BASE_URL from "../config";
 
 const ResetPassword = () => {
 	const { token } = useParams(); // Get reset token from URL
@@ -38,7 +39,7 @@ const ResetPassword = () => {
 
 		try {
 			const response = await axios.post(
-				"http://localhost:5000/api/users/reset-password",
+				`${API_BASE_URL}/api/users/reset-password`,
 				{ token, password }
 			);
 

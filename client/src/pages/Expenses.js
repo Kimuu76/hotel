@@ -21,6 +21,7 @@ import {
 	Alert,
 } from "@mui/material";
 import { Delete, Edit, Save } from "@mui/icons-material";
+import API_BASE_URL from "../config";
 
 // Function to extract business_id from token
 const getBusinessIdFromToken = () => {
@@ -59,7 +60,7 @@ const Expenses = () => {
 		}
 		const fetchExpenses = async () => {
 			try {
-				const response = await axios.get("http://localhost:5000/api/expenses", {
+				const response = await axios.get(`${API_BASE_URL}/api/expenses`, {
 					params: { business_id: businessId },
 				});
 				setExpenses(response.data);
@@ -87,13 +88,10 @@ const Expenses = () => {
 		if (!confirm) return;
 
 		try {
-			const response = await axios.post(
-				"http://localhost:5000/api/expenses/add",
-				{
-					...newExpense,
-					business_id: businessId,
-				}
-			);
+			const response = await axios.post(`${API_BASE_URL}/api/expenses/add`, {
+				...newExpense,
+				business_id: businessId,
+			});
 			setExpenses([...expenses, response.data]);
 			setNewExpense({ description: "", amount: "" });
 			setSnackbar({
@@ -113,7 +111,7 @@ const Expenses = () => {
 	// Delete expense
 	const handleDelete = async () => {
 		try {
-			await axios.delete(`http://localhost:5000/api/expenses/${deleteId}`, {
+			await axios.delete(`${API_BASE_URL}/api/expenses/${deleteId}`, {
 				data: { business_id: businessId },
 			});
 			setExpenses(expenses.filter((expense) => expense.id !== deleteId));
@@ -155,7 +153,7 @@ const Expenses = () => {
 		if (!confirm) return;
 
 		try {
-			await axios.put(`http://localhost:5000/api/expenses/${editId}`, {
+			await axios.put(`${API_BASE_URL}/api/expenses/${editId}`, {
 				...editData,
 				business_id: businessId,
 			});

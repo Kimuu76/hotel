@@ -14,6 +14,7 @@ import {
 	Box,
 	Divider,
 } from "@mui/material";
+import API_BASE_URL from "../config";
 
 const Login = () => {
 	const [form, setForm] = useState({ identifier: "", password: "" });
@@ -32,7 +33,7 @@ const Login = () => {
 
 		try {
 			const response = await axios.post(
-				"http://localhost:5000/api/users/login",
+				`${API_BASE_URL}/api/users/login`,
 				form
 			);
 
