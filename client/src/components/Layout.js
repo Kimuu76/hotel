@@ -8,12 +8,7 @@ import { Box } from "@mui/material";
 
 const Layout = () => {
 	const location = useLocation();
-	const noLayoutPages = [
-		"/",
-		"/register",
-		"/forgot-password",
-		"/reset-password",
-	];
+	const noLayoutPages = ["/", "/register", "/forgot-password"];
 
 	return noLayoutPages.includes(location.pathname) ? (
 		<Outlet />
