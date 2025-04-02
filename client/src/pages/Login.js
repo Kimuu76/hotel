@@ -71,8 +71,11 @@ const Login = () => {
 				}}
 			>
 				{/* Welcome Message */}
+				<Typography variant='h1' fontWeight='bold' textAlign='center'>
+					🍽️
+				</Typography>
 				<Typography variant='h4' fontWeight='bold' textAlign='center'>
-					🍽️ Meal Joint Management System
+					Meal Joint Management System
 				</Typography>
 				<Typography variant='body1' textAlign='center' color='textSecondary'>
 					Efficiently manage your restaurant, track sales, purchases, and
