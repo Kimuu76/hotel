@@ -1,0 +1,31 @@
+{
+	"name": "server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node src/server.js",
+		"dev": "nodemon src/server.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"dependencies": {
+		"bcryptjs": "^3.0.2",
+		"body-parser": "^1.20.3",
+		"cors": "^2.8.5",
+		"crypto": "^1.0.1",
+		"dotenv": "^16.4.7",
+		"exceljs": "^4.4.0",
+		"express": "^4.21.2",
+		"express-validator": "^7.2.1",
+		"morgan": "^1.10.0",
+		"mssql": "^11.0.1",
+		"nodemailer": "^6.10.0",
+		"pdfkit": "^0.16.0"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.9"
+	}
+}
