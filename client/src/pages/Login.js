@@ -88,7 +88,8 @@ const Login = () => {
 							fontWeight='bold'
 							gutterBottom
 						>
-							Welcome Back 👋
+							Welcome Back
+							<Link to='/register'>👋</Link>
 						</Typography>
 						<Typography
 							variant='body2'
