@@ -37,7 +37,7 @@ const dbConfig = {
 	database: process.env.DB_NAME,
 	port: Number(process.env.DB_PORT) || 10226,
 	options: {
-		encrypt: false,
+		encrypt: true,
 		trustServerCertificate: true,
 	},
 	pool: {
