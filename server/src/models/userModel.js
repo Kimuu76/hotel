@@ -21,6 +21,14 @@ const createUsersTable = async () => {
                     CONSTRAINT FK_Users_Business FOREIGN KEY (business_id) REFERENCES Businesses(id) ON DELETE CASCADE
                 )
             END
+             ELSE
+            BEGIN
+                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Users' AND COLUMN_NAME = 'reset_token')
+                    ALTER TABLE Users ADD reset_token NVARCHAR(255) NULL;
+
+                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Users' AND COLUMN_NAME = 'reset_expires')
+                    ALTER TABLE Users ADD reset_expires DATETIME NULL;
+            END
         `;
 		await sql.query(query);
 		console.log("Users table checked/created successfully.");

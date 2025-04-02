@@ -31,7 +31,12 @@ const IDLE_TIMEOUT = 5 * 60 * 1000; // 5 minutes
 const AppContent = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const noLayoutPages = ["/", "/register", "/forgot-password"];
+	const noLayoutPages = [
+		"/",
+		"/register",
+		"/forgot-password",
+		"/reset-password",
+	];
 	const isMobile = useMediaQuery("(max-width: 768px)");
 	const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
 
@@ -71,11 +76,16 @@ const AppContent = () => {
 		};
 	}, [logoutUser]);
 
-	return noLayoutPages.includes(location.pathname) ? (
+	const isNoLayoutPage = noLayoutPages.some((path) =>
+		location.pathname.startsWith(path)
+	);
+
+	return isNoLayoutPage ? (
 		<Routes>
 			<Route path='/' element={<Login />} />
 			<Route path='/register' element={<Register />} />
 			<Route path='/forgot-password' element={<ForgotPassword />} />
+			<Route path='/reset-password/:token' element={<ResetPassword />} />
 		</Routes>
 	) : (
 		<div
@@ -118,7 +128,6 @@ const AppContent = () => {
 						<Route path='/purchases' element={<Purchases />} />
 						<Route path='/users' element={<UserManagement />} />
 						<Route path='/reports' element={<Reports />} />
-						<Route path='/reset-password/:token' element={<ResetPassword />} />
 					</Routes>
 				</div>
 			</div>

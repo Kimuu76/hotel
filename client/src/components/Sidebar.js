@@ -53,6 +53,7 @@ const Sidebar = () => {
 		},
 		{ text: "Food Management", path: "/foodsales", icon: <Fastfood /> },
 		{ text: "Sales", path: "/sales", icon: <Sell /> },
+		{ text: "reset", path: "/reset-password/:token", icon: <Sell /> },
 	];
 
 	const menuItems = role === "admin" ? adminMenu : salespersonMenu;
