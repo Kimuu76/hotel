@@ -160,11 +160,11 @@ const Login = () => {
 					</CardContent>
 				</Card>
 
-				{/* Footer */}
+				{/* Footer 
 				<Divider sx={{ width: "100%", mt: 2 }} />
 				<Typography variant='body2' color='textSecondary' textAlign='center'>
 					Developed by KevTech || Contact +254712992577
-				</Typography>
+				</Typography>*/}
 			</Box>
 		</Container>
 	);
