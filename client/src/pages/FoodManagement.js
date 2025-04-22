@@ -88,7 +88,9 @@ const FoodManagement = () => {
 	const handleDelete = async (id) => {
 		if (window.confirm("Are you sure you want to delete this food item?")) {
 			try {
-				await axios.delete(`${API_BASE_URL}/api/food/${id}`);
+				await axios.delete(
+					`${API_BASE_URL}/api/food/${id}?business_id=${businessId}`
+				);
 				alert("Food item deleted successfully!");
 				setFoods(foods.filter((food) => food.id !== id));
 			} catch (error) {
