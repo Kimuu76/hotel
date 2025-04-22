@@ -60,9 +60,10 @@ router.get("/", async (req, res) => {
 });
 
 // Update food item (ensures business ownership)
+
 router.put("/:id", async (req, res) => {
 	const { id } = req.params;
-	const { price, stock, business_id } = req.body;
+	const { price, stock, name, business_id } = req.body;
 
 	if (!business_id) {
 		return res.status(400).json({ error: "Business ID is required" });
@@ -71,7 +72,7 @@ router.put("/:id", async (req, res) => {
 	try {
 		const pool = await sql.connect();
 
-		// Ensure the food item belongs to the business before updating
+		// Confirm ownership
 		const checkResult = await pool
 			.request()
 			.input("id", sql.Int, id)
@@ -89,10 +90,12 @@ router.put("/:id", async (req, res) => {
 		await pool
 			.request()
 			.input("id", sql.Int, id)
+			.input("name", sql.NVarChar, name)
 			.input("price", sql.Decimal(10, 2), price)
-			.input("stock", sql.Int, stock).query(`
+			.input("stock", sql.Int, stock)
+			.input("business_id", sql.Int, business_id).query(`
 				UPDATE Food 
-				SET price = @price, stock = @stock 
+				SET name = @name, price = @price, stock = @stock
 				WHERE id = @id AND business_id = @business_id
 			`);
 
@@ -117,7 +120,6 @@ router.delete("/:id", async (req, res) => {
 	try {
 		const pool = await sql.connect();
 
-		// Ensure the food item belongs to the business before deleting
 		const checkResult = await pool
 			.request()
 			.input("id", sql.Int, id)
