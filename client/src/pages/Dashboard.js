@@ -104,6 +104,7 @@ const Dashboard = () => {
 			color: "#007bff",
 		},
 		{
+			/*{
 			label: "Total Expenses",
 			value: summary.totalExpenses,
 			icon: <MoneyOff sx={{ fontSize: 40, marginRight: 2 }} />,
@@ -120,6 +121,7 @@ const Dashboard = () => {
 			value: summary.totalProfit,
 			icon: <TrendingUp sx={{ fontSize: 40, marginRight: 2 }} />,
 			color: summary.totalProfit >= 0 ? "#28a745" : "#d9534f",
+		},*/
 		},
 	];
 
@@ -156,9 +158,7 @@ const Dashboard = () => {
 								<BarChart
 									sx={{ fontSize: 40, marginRight: 2, color: "#007bff" }}
 								/>
-								<Typography variant='h6'>
-									Sales vs Purchases Per Month
-								</Typography>
+								<Typography variant='h6'>Sales Per Month</Typography>
 							</Box>
 							<ResponsiveContainer width='100%' height={300}>
 								<ReBarChart data={summary.monthlyData}>
@@ -167,11 +167,11 @@ const Dashboard = () => {
 									<Tooltip />
 									<Legend />
 									<Bar dataKey='monthlySales' fill='#28a745' name='Sales' />
-									<Bar
+									{/*<Bar
 										dataKey='monthlyPurchases'
 										fill='#17a2b8'
 										name='Purchases'
-									/>
+									/>*/}
 								</ReBarChart>
 							</ResponsiveContainer>
 						</CardContent>
