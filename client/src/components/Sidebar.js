@@ -39,10 +39,8 @@ const Sidebar = () => {
 		{ text: "Dashboard", path: "/dashboard", icon: <Dashboard /> },
 		{ text: "Food Management", path: "/food", icon: <Fastfood /> },
 		{ text: "Sales", path: "/sales", icon: <Sell /> },
-		{
-			/*{ text: "Purchases", path: "/purchases", icon: <ShoppingCart /> },
-		{ text: "Expenses", path: "/expenses", icon: <AttachMoney /> },*/
-		},
+		{ text: "Purchases", path: "/purchases", icon: <ShoppingCart /> },
+		{ text: "Expenses", path: "/expenses", icon: <AttachMoney /> },
 		{ text: "Users Management", path: "/users", icon: <People /> },
 		{ text: "Reports", path: "/reports", icon: <BarChart /> },
 	];

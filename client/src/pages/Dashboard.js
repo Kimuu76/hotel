@@ -103,6 +103,24 @@ const Dashboard = () => {
 			icon: <MonetizationOn sx={{ fontSize: 40, marginRight: 2 }} />,
 			color: "#007bff",
 		},
+		{
+			label: "Total Expenses",
+			value: summary.totalExpenses,
+			icon: <MoneyOff sx={{ fontSize: 40, marginRight: 2 }} />,
+			color: "#dc3545",
+		},
+		{
+			label: "Total Purchases",
+			value: summary.totalPurchases,
+			icon: <ShoppingCart sx={{ fontSize: 40, marginRight: 2 }} />,
+			color: "#17a2b8",
+		},
+		{
+			label: summary.totalProfit >= 0 ? "Profit" : "Loss",
+			value: summary.totalProfit,
+			icon: <TrendingUp sx={{ fontSize: 40, marginRight: 2 }} />,
+			color: summary.totalProfit >= 0 ? "#28a745" : "#d9534f",
+		},
 	];
 
 	return (
@@ -130,7 +148,7 @@ const Dashboard = () => {
 					</Grid>
 				))}
 
-				{/* Sales Overview Chart */}
+				{/* Sales vs Purchases Chart */}
 				<Grid item xs={12}>
 					<Card sx={{ borderRadius: 3, boxShadow: 3 }}>
 						<CardContent>
@@ -138,7 +156,7 @@ const Dashboard = () => {
 								<BarChart
 									sx={{ fontSize: 40, marginRight: 2, color: "#007bff" }}
 								/>
-								<Typography variant='h6'>Sales Overview</Typography>
+								<Typography variant='h6'>Sales Per Month</Typography>
 							</Box>
 							<ResponsiveContainer width='100%' height={300}>
 								<ReBarChart data={summary.monthlyData}>
@@ -147,6 +165,13 @@ const Dashboard = () => {
 									<Tooltip />
 									<Legend />
 									<Bar dataKey='monthlySales' fill='#28a745' name='Sales' />
+									{
+										<Bar
+											dataKey='monthlyPurchases'
+											fill='#17a2b8'
+											name='Purchases'
+										/>
+									}
 								</ReBarChart>
 							</ResponsiveContainer>
 						</CardContent>
