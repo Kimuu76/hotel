@@ -90,6 +90,7 @@ router.put("/:id", async (req, res) => {
 		await pool
 			.request()
 			.input("id", sql.Int, id)
+			.input("business_id", sql.Int, business_id)
 			.input("description", sql.NVarChar, description)
 			.input("amount", sql.Decimal(10, 2), amount).query(`
 				UPDATE Expenses 

@@ -109,12 +109,12 @@ const Expenses = () => {
 	};
 
 	// Delete expense
-	const handleDelete = async () => {
+	const handleDelete = async (id) => {
 		try {
-			await axios.delete(`${API_BASE_URL}/api/expenses/${deleteId}`, {
-				data: { business_id: businessId },
-			});
-			setExpenses(expenses.filter((expense) => expense.id !== deleteId));
+			await axios.delete(
+				`${API_BASE_URL}/api/expenses/${id}?business_id=${businessId}`
+			);
+			setExpenses(expenses.filter((expense) => expense.id !== id)); // ✅ use id directly
 			setSnackbar({
 				open: true,
 				message: "Expense deleted successfully!",
@@ -256,9 +256,10 @@ const Expenses = () => {
 											</IconButton>
 											<IconButton
 												color='error'
-												onClick={() =>
-													setOpenConfirmDialog(true) || setDeleteId(expense.id)
-												}
+												onClick={() => {
+													setOpenConfirmDialog(true);
+													setDeleteId(expense.id);
+												}}
 											>
 												<Delete />
 											</IconButton>
@@ -284,7 +285,7 @@ const Expenses = () => {
 					<Button onClick={() => setOpenConfirmDialog(false)} color='secondary'>
 						Cancel
 					</Button>
-					<Button onClick={handleDelete} color='error'>
+					<Button onClick={() => handleDelete(deleteId)} color='error'>
 						Delete
 					</Button>
 				</DialogActions>
